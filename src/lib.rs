@@ -3,8 +3,10 @@ extern crate nix;
 extern crate rosc;
 extern crate dirs;
 
+
 use nix::unistd::execv;
 use std::ffi::CString;
+use std::os::unix::ffi::OsStrExt;
 use std::io::{self, Read};
 use std::path::Path;
 use std::{process};
@@ -108,7 +110,8 @@ pub fn start_server() {
     match paths.iter().find(|p| Path::new(&p).exists()) {
         Some(p) => {
             let cmd = &CString::new(p.clone()).unwrap();
-            execv(cmd, &[]).unwrap_or_else(|_| panic!("Unable to start {}", *p))
+            let imaginary: Vec<CString> = [].to_vec();
+            execv(cmd, &imaginary).unwrap_or_else(|_| panic!("Unable to start {}", *p))
         }
         None => {
             println!("I couldn't find the Sonic Pi server executable :(");

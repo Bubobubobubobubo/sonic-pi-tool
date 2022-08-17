@@ -98,6 +98,7 @@ pub fn start_server() {
         String::from("/usr/lib/sonic-pi/server/bin/sonic-pi-server.rb"),
         String::from("/opt/sonic-pi/app/server/ruby/bin/sonic-pi-server.rb"),
         String::from("/usr/lib/sonic-pi/server/ruby/bin/sonic-pi-server.rb"),
+        String::from("/usr/lib/sonic-pi/app/server/ruby/bin/sonic-pi-server.rb"),
     ];
 
     if let Some(home_directory) = dirs::home_dir() {
